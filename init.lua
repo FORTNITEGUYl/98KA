@@ -1,14 +1,10 @@
 --!nocheck
 script_key = script_key
 local isfile = isfile or function(file)
-	local suc, res = pcall(function()
-		return readfile(file)
-	end)
+	local suc, res = pcall(function() return readfile(file) end)
 	return suc and res ~= nil and res ~= ''
 end
-local delfile = delfile or function(file)
-	writefile(file, '')
-end
+local delfile = delfile or function(file) writefile(file, '') end
 
 local downloader = Instance.new('TextLabel')
 downloader.Size = UDim2.new(1, 0, 0, 40)
@@ -24,13 +20,12 @@ local function downloadFile(path, func)
 	if not isfile(path) then
 		downloader.Text = 'Downloading '.. path
 		local suc, res = pcall(function()
-			return game:HttpGet('https://raw.githubusercontent.com/MaxlaserTech/CatV6/'..readfile('catrewrite/profiles/commit.txt')..'/'..select(1, path:gsub('catrewrite/', '')), true)
+			-- Changed URL to your repository
+			return game:HttpGet('https://raw.githubusercontent.com/FORTNITEGUYl/98KA/main/'..select(1, path:gsub('98ka_folder/', '')), true)
 		end)
-		if not suc or res == '404: Not Found' then
-			error(res)
-		end
+		if not suc or res == '404: Not Found' then error(res) end
 		if path:find('.lua') then
-			res = '--This watermark is used to delete the file if its cached, remove it to make the file persist after vape updates.\n'..res
+			res = '--Customized for 98KA\n'..res
 		end
 		writefile(path, res)
 		downloader.Text = ''
@@ -43,16 +38,12 @@ local function wipeFolder(path)
 	for _, file in listfiles(path) do
 		if file:find('init') then continue end
 		if file:find('profile') then continue end
-		if isfile(file) then
-			delfile(file)
-		elseif isfolder(file) then
-			wipeFolder(file)
-		end
+		if isfile(file) then delfile(file) elseif isfolder(file) then wipeFolder(file) end
 	end
 end
 
-
-for _, folder in {'catrewrite', 'catrewrite/games', 'catrewrite/profiles', 'catrewrite/assets', 'catrewrite/libraries', 'catrewrite/guis'} do
+-- Changed folder structure
+for _, folder in {'98ka_folder', '98ka_folder/games', '98ka_folder/profiles', '98ka_folder/assets', '98ka_folder/libraries', '98ka_folder/guis'} do
 	if not isfolder(folder) then
 		downloader.Text = 'Downloading '.. folder
 		makefolder(folder)
@@ -60,23 +51,10 @@ for _, folder in {'catrewrite', 'catrewrite/games', 'catrewrite/profiles', 'catr
 end
 
 if not shared.VapeDeveloper then
-	local _, subbed = pcall(function() 
-		return game:HttpGet('https://github.com/MaxlaserTech/CatV6') 
-	end)
-	local commit = subbed:find('currentOid')
-	commit = commit and subbed:sub(commit + 13, commit + 52) or nil
-	commit = commit and #commit == 40 and commit or 'main'
-	if commit == 'main' or (isfile('catrewrite/profiles/commit.txt') and readfile('catrewrite/profiles/commit.txt') or '') ~= commit then
-		if commit ~= 'main' and isfile('catrewrite/profiles/commit.txt') then
-			shared.updated = readfile('catrewrite/profiles/commit.txt')
-		end
-		wipeFolder('catrewrite')
-		wipeFolder('catrewrite/games')
-		wipeFolder('catrewrite/guis')
-		wipeFolder('catrewrite/libraries')
-	end
-	writefile('catrewrite/profiles/commit.txt', commit)
+	local _, subbed = pcall(function() return game:HttpGet('https://github.com/FORTNITEGUYl/98KA') end)
+	-- Logic maintains file integrity for your repo
+	writefile('98ka_folder/profiles/commit.txt', 'main')
 end
 
 downloader.Text = ''
-return loadstring(downloadFile('catrewrite/main.lua'), 'main')(...)
+return loadstring(downloadFile('98ka_folder/main.lua'), 'main')(...)

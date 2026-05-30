@@ -146,7 +146,7 @@ local function safecall(func, ...)
 	xpcall(function()
 		func(unpack(args))
 	end, function(err)
-		if getgenv().catvapedev then
+		if getgenv().nineeightkadev then
 			warn(err)
 		end
 	end)
@@ -2630,7 +2630,7 @@ function mainapi:CreateGUI()
 	settingsversion.Size = UDim2.new(1, 0, 0, 16)
 	settingsversion.Position = UDim2.new(0, -6, 1, -16)
 	settingsversion.BackgroundTransparency = 1
-	settingsversion.Text = 'Kitty Vape v'..mainapi.Version
+	settingsversion.Text = '98KA v'..mainapi.Version
 	settingsversion.TextColor3 = color.Dark(uipallet.Text, 0.43)
 	settingsversion.TextXAlignment = Enum.TextXAlignment.Right
 	settingsversion.TextSize = 10
@@ -3670,7 +3670,7 @@ function mainapi:CreateGUI()
 
 		task.spawn(function()
 			tooltip.Text = 'Copied!'
-			setclipboard('https://discord.gg/catvape')
+			setclipboard('https://discord.gg/98ka') -- TODO: Update with actual Discord invite link
 		end)
 	end)
 	settingsbutton.MouseEnter:Connect(function()
@@ -6344,7 +6344,7 @@ function mainapi:CreateProfileGUI()
 
 		local success, res = pcall(function()
 			return httpService:JSONDecode(httpService:JSONDecode(request({
-				Url = 'https://api.catvape.dev/configs/set',
+				Url = 'https://api.98ka.dev/configs/set', -- TODO: Update with actual API endpoint
 				Method = 'POST',
 				Headers = {
 					['Content-Type'] = 'application/json'
@@ -6393,7 +6393,7 @@ function mainapi:CreateProfileGUI()
 
 		if lol then
 			local res = httpService:JSONDecode(httpService:JSONDecode(request({
-				Url = 'https://api.catvape.dev/configs/delete',
+				Url = 'https://api.98ka.dev/configs/delete', -- TODO: Update with actual API endpoint
 				Method = 'POST',
 				Headers = {
 					['Content-Type'] = 'application/json'
@@ -6457,7 +6457,7 @@ function mainapi:CreateProfileGUI()
 
 				local suc, res = pcall(function()
 					return httpService:JSONDecode(httpService:JSONDecode(request({
-						Url = 'https://api.catvape.dev/configs/get',
+						Url = 'https://api.98ka.dev/configs/get', -- TODO: Update with actual API endpoint
 						Method = 'POST'
 					}).Body).response).configs
 				end)
@@ -6830,7 +6830,7 @@ function mainapi:Load(skipgui, profile, profiledata)
 
 		if guipane then
 			guipane:CreateToggle({
-				Name = 'Hide catvape button',
+				Name = 'Hide 98ka button',
 				Default = hide or false,
 				Function = function(call)
 					button.BackgroundTransparency = call and 1 or 0.35
@@ -6977,7 +6977,7 @@ local scarcitybanner = Instance.new('TextLabel')
 scarcitybanner.Size = UDim2.fromScale(1, 0.02)
 scarcitybanner.Position = UDim2.fromScale(0, 0.96)
 scarcitybanner.BackgroundTransparency = 1
-scarcitybanner.Text = 'We have a new new new discord server! Join discord.gg/catvape.'
+scarcitybanner.Text = 'We have a new new new discord server! Join discord.gg/98ka.' -- TODO: Update with actual Discord invite
 scarcitybanner.TextSize = 22
 scarcitybanner.TextColor3 = Color3.new(1, 1, 1)
 scarcitybanner.TextStrokeTransparency = 0.5

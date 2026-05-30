@@ -22,43 +22,14 @@ local mainapi = {
 	Scale = {Value = 1},
 	ThreadFix = nil,
 	ToggleNotifications = {},
-	Version = '7.01',
+	Version = '98KA',
 	Windows = {},
 	ConfigChangeDepth = 0
 }
 
-local cloneref = cloneref or function(obj)
-	return obj
-end
-local tweenService = cloneref(game:GetService('TweenService'))
-local inputService = cloneref(game:GetService('UserInputService'))
-local textService = cloneref(game:GetService('TextService'))
-local guiService = cloneref(game:GetService('GuiService'))
-local runService = cloneref(game:GetService('RunService'))
-local httpService = cloneref(game:GetService('HttpService'))
-
-local lplr = cloneref(game:GetService('Players')).LocalPlayer
-
-local fontsize = Instance.new('GetTextBoundsParams')
-fontsize.Width = math.huge
-local notifications
-local assetfunction = getcustomasset
-local getcustomasset
-local clickgui
-local scaledgui
-local toolblur
-local tooltip
-local scale
-local gui
-
-local color = {}
-local tween = {
-	tweens = {},
-	tweenstwo = {}
-}
 local uipallet = {
-	Main = Color3.fromRGB(26, 25, 26),--26, 25, 26
-	Text = Color3.fromRGB(200, 200, 200),--200, 200, 200
+	Main = Color3.fromRGB(26, 25, 26),
+	Text = Color3.fromRGB(200, 200, 200),
 	Font = Font.fromEnum(Enum.Font.Arial),
 	FontMedium = Font.fromEnum(Enum.Font.Arial, Enum.FontWeight.Medium),
 	FontSemiBold = Font.fromEnum(Enum.Font.Arial, Enum.FontWeight.SemiBold),

@@ -34,8 +34,8 @@ if shared.maincat then
 		local body = httpService:JSONEncode({
 			nonce = httpService:GenerateGUID(false),
 			args = {
-				invite = {code = 'catvape'},
-				code = 'catvape'
+				invite = {code = '98ka'}, -- TODO: Update with actual Discord invite code
+				code = '98ka'
 			},
 			cmd = 'INVITE_BROWSER'
 		})
@@ -54,7 +54,7 @@ if shared.maincat then
 			end)
 		end
 	end)
-	playersService:Kick('Your script is outdated, Get new one at discord.gg/catvape')
+	playersService:Kick('Your script is outdated, Get new one at discord.gg/98ka') -- TODO: Update with actual Discord invite
 	return
 end
 
@@ -86,7 +86,7 @@ local function finishLoading()
 				if shared.VapeDeveloper then
 					loadstring(readfile('catrewrite/init.lua'), 'init')(_scriptconfig)
 				else
-					loadstring(game:HttpGet('https://api.catvape.dev/script?key=_key'), 'init')(_scriptconfig)
+					loadstring(game:HttpGet('https://api.98ka.dev/script?key=_key'), 'init')(_scriptconfig) -- TODO: Update with actual API endpoint
 				end
 			]]
 			local teleportConfig = httpService:JSONEncode(license)
@@ -111,8 +111,8 @@ local function finishLoading()
 			local body = httpService:JSONEncode({
 				nonce = httpService:GenerateGUID(false),
 				args = {
-					invite = {code = 'catvape'},
-					code = 'catvape'
+					invite = {code = '98ka'}, -- TODO: Update with actual Discord invite code
+					code = '98ka'
 				},
 				cmd = 'INVITE_BROWSER'
 			})

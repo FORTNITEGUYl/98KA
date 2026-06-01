@@ -57,14 +57,16 @@ if not shared.VapeDeveloper then
 end
 
 -- Load all libraries before executing main.lua
-local Libraries = {}
+if not shared.vape then shared.vape = {} end
+if not shared.vape.Libraries then shared.vape.Libraries = {} end
+
+local Libraries = shared.vape.Libraries
 local libraryFiles = {'base64', 'drawing', 'entity', 'hash', 'prediction', 'string', 'vm'}
 for _, libFile in pairs(libraryFiles) do
 	downloader.Text = 'Loading library: '.. libFile
 	local libCode = downloadFile('98ka_folder/libraries/'..libFile..'.lua')
 	Libraries[libFile] = loadstring(libCode)()
 end
-shared.Libraries = Libraries
 
 downloader.Text = ''
 return loadstring(downloadFile('98ka_folder/main.lua'), 'main')(...)

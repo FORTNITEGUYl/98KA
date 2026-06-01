@@ -56,5 +56,15 @@ if not shared.VapeDeveloper then
 	writefile('98ka_folder/profiles/commit.txt', 'main')
 end
 
+-- Load all libraries before executing main.lua
+local Libraries = {}
+local libraryFiles = {'base64', 'drawing', 'entity', 'hash', 'prediction', 'string', 'vm'}
+for _, libFile in pairs(libraryFiles) do
+	downloader.Text = 'Loading library: '.. libFile
+	local libCode = downloadFile('98ka_folder/libraries/'..libFile..'.lua')
+	Libraries[libFile] = loadstring(libCode)()
+end
+shared.Libraries = Libraries
+
 downloader.Text = ''
 return loadstring(downloadFile('98ka_folder/main.lua'), 'main')(...)
